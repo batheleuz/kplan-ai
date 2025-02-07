@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('/static/images/imagesql.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.chat-container {
+    width: 600px; /* Augmente la largeur à 600px */
+    margin: 20px auto; /* Ajuste les marges */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* Utilisation de la hauteur de l'écran (80% de la hauteur visible) */
+ }
+
+/* En-tête du chat */
+.chat-header {
+   background-color: #EEEEEE;
+   padding: 10px;
+   display: flex;
+   align-items: center;
+   backdrop-filter: blur(10px);
+    color : #E5E500;
+}
+
+.chat-header .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-header .header-info {
+    flex-grow: 1;
+}
+
+.chat-header .close-btn {
+    cursor: pointer;
+}
+
+.chat-content {
+    height: 400px;
+    overflow-y: scroll;
+    padding: 20px;
+    background-color: #e0d7a5;
+}
+
+/* Messages */
+.message {
+   display: flex;
+   align-items: center;
+   margin-bottom: 15px;
+}
+
+.message-text {
+   max-width: 70%;
+   padding: 10px 15px;
+   border-radius: 20px;
+   font-size: 14px;
+   position: relative;
+   background-color: #f1f1f1;
+}
+
+
+
+/* Message reçu */
+.received {
+   flex-direction: row;
+}
+
+.received .message-text {
+   background-color: #f1f1f1;
+   color: black;
+   border-radius: 20px 20px 20px 0;
+}
+
+/* Message envoyé */
+.sent {
+   flex-direction: row-reverse;
+   margin-right: 15px; /* Ajout de marge pour espacer l'avatar du champ de saisie */
+}
+
+.sent .message-text {
+   background-color: #666666;
+   border-radius: 20px 20px 0 20px;
+   text-align: right;
+   margin-left: 5px;
+}
+h2 {
+    color: black;
+}
+/* Avatar utilisateur */
+.avatar {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   margin-right: 10px; /* Marge supplémentaire entre l'avatar et le champ de saisie */
+}
+
+.avatar1 {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   margin-left: 10px; /* Marge supplémentaire entre l'avatar et le champ de saisie */
+}
+/* Input de message */
+.chat-input {
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #ccc;
+    margin-bottom: 10px; /* Ajouter un peu d'espace en bas du champ de saisie */
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px; /* Espace entre l'input et l'icône d'envoi */
+}
+
+.send-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+/* Flèche de retour */
+.back-arrow {
+    font-size: 24px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.certification-icon {
+    width: 20px; /* Ajustez la taille selon vos besoins */
+    height: 20px; /* Ajustez la taille selon vos besoins */
+    vertical-align: middle; /* Aligne l'icône verticalement avec le texte */
+    margin-left: 5px; /* Espace entre le texte et l'icône */
+}
+/* Réglages pour les écrans de téléphone */
+@media (max-width: 768px) {
+    body {
+        background-size: cover; /* Ajustez pour couvrir l'écran */
+    }
+
+    .chat-container {
+        width: 90%;
+        height: 85vh;
+        border-radius: 0;
+    }
+ 
+ 
+
+
+    .chat-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .chat-header .profile-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chat-header .header-info h2 {
+        font-size: 16px;
+    }
+
+    .chat-header .header-info p {
+        font-size: 14px;
+    }
+
+    .chat-content {
+        height: calc(100% - 115px); /* Ajuste la hauteur pour le conteneur de messages */
+    }
+
+    .send-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .chat-input input {
+        font-size: 12px;
+    }
+
+    .message-text {
+        font-size: 12px;
+    }
+
+    .avatar, .avatar1 {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Réglages pour les écrans de tablette */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 90%;
+    }
+
+    .chat-header {
+        padding: 15px;
+    }
+
+    .chat-header .profile-pic {
+        width: 45px;
+        height: 45px;
+    }
+
+    .chat-header .header-info h2 {
+        font-size: 18px;
+    }
+
+    .chat-header .header-info p {
+        font-size: 16px;
+    }
+
+    .chat-content {
+        height: calc(100% - 115px); /* Ajuste la hauteur pour le conteneur de messages */
+    }
+
+    .send-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .chat-input input {
+        font-size: 14px;
+    }
+
+    .message-text {
+        font-size: 14px;
+    }
+
+    .avatar, .avatar1 {
+        width: 35px;
+        height: 35px;
+    }
+}

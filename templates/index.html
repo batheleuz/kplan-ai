@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='images/CHATT.png') }}" type="image/x-icon">
+    <title>test Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Flèche de retour -->
+    <span class="back-arrow" onclick="goBack()">&#8592;</span>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <img src="static/images/CHATT.png" alt="Profile Picture" class="profile-pic">
+                    <div class="header-info">
+                        <h2>Test Model</h2>
+                        <p>
+                            Support
+                            <img src="static/images/logo cert.png" alt="Certification Icon" class="certification-icon">
+                        </p>
+                    </div>
+
+            <div class="header-icons">
+                <span class="close-btn">&times;</span>
+            </div>
+        </div>
+
+        <div class="chat-content" id="chat-container">
+
+        </div>
+        <div class="chat-input response-container">
+            <input type="text" id="user-input" placeholder="Type your message..." />
+            <img src="static/images/send3.png" alt="Send Icon" class="send-icon" id="send-btn">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#send-btn").on("click", function () {
+                sendMessage();
+            });
+
+            $("#user-input").on("keypress", function (e) {
+                if (e.which === 13) {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                var userInput = $("#user-input").val().trim();
+                if (userInput !== "") {
+                    $("#user-input").val("");
+
+                    // Message envoyé par l'utilisateur
+                    $("#chat-container").append('<div class="message sent"><img src="static/images/user.jpeg" alt="User Avatar" class="avatar1"><div class="message-text"><p>' + userInput + '</p></div></div>');
+                    scrollToBottom();
+
+                    // Message de chargement du bot
+                    $("#chat-container").append('<div class="message received loading-message"><img src="static/images/CHATT.png" alt="Bot Avatar" class="avatar"><div class="message-text"><p>Bot is typing...</p></div></div>');
+                    scrollToBottom();
+
+                    // Simuler une réponse après l'envoi d'une requête au serveur
+                    $.post("/chat", { text: userInput }, function (response) {
+                        $("#chat-container .loading-message").remove();
+                        $("#chat-container").append('<div class="message received"><img src="static/images/CHATT.png" alt="Bot Avatar" class="avatar"><div class="message-text"><p>' + response.text + '</p></div></div>');
+                        scrollToBottom();
+                    });
+                }
+            }
+
+            function scrollToBottom() {
+                $("#chat-container").scrollTop($("#chat-container")[0].scrollHeight);
+            }
+        });
+
+        // Fonction pour retourner à la page de départ
+        function goBack() {
+            window.location.href = "/"; // Remplacez "/" par l'URL de votre page de départ
+        }
+    </script>
+</body>
+</html>
